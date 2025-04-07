@@ -1,12 +1,16 @@
 const express = require('express');
+const userController = require('../controller/user.controller');
+
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.status(200).json({message: "récupération utilisateur"});
-});
+router.get('/', userController.getAll);
 
-router.post('/', (req, res, next) => {
-    res.status(201).json({message: "création utilisateur"});
-});
+router.get('/:id', userController.getById);
+
+router.post('/', userController.create);
+
+router.put('/:id', userController.update);
+
+router.delete('/:id', userController.remove);
 
 module.exports = router;
